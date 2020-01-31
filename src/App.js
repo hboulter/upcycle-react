@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, withRouter } from "react-router-dom";
 import axios from "axios";
-import Home from "./Home";
-import Search from "./Search";
-import SignIn from "./auth/SignIn";
-import SignUp from "./auth/SignUp";
-import NavBar from "./NavBar";
+import Home from "./views/Home/Home";
+import Search from "./views/Search/Search";
+import SignIn from "./views/SignIn/SignIn";
+import SignUp from "./views/SignUp/SignUp";
+import NavBar from "./components/NavBar";
+import Post from "./views/Post/Post";
 
 class App extends Component {
   constructor() {
@@ -86,14 +87,12 @@ class App extends Component {
             )}
           ></Route>
           <Route
-            exact
             path={"/search"}
             render={props => (
               <Search {...props} loggedInStatus={this.state.loggedInStatus} />
             )}
           ></Route>
           <Route
-            exact
             path="/signin"
             render={props => (
               <SignIn
@@ -104,7 +103,6 @@ class App extends Component {
             )}
           />
           <Route
-            exact
             path="/signup"
             render={props => (
               <SignUp
@@ -114,6 +112,7 @@ class App extends Component {
               />
             )}
           />
+          <Route path="/post" component={Post} />
         </Switch>
       </>
     );

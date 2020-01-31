@@ -26,21 +26,6 @@ body {
   padding-top: 75px;
 }
 
-.header {
-  height: 100vh;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(145, 170, 180, 0.8),
-      rgba(62, 96, 111, 0.8),
-      rgba(25, 52, 65, 0.8)
-    ),
-    url("./images/one.jpg");
-  background-size: cover;
-  background-position: center;
-  padding: 81px 16px 16px 16px;
-  position: relative;
-}
-
 .nav-bar {
   background-color: rgb(245, 245, 245);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
@@ -51,8 +36,4 @@ body {
   right: 0;
   top: 0;
   z-index: 1;
-}
-
-#sign-in__container {
-  padding: 16px;
 }
