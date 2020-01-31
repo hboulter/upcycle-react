@@ -9,18 +9,15 @@ class SignIn extends Component {
       password: "",
       loginErrors: ""
     };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     const { username, password } = this.state;
     axios
       .post(
@@ -34,6 +31,8 @@ class SignIn extends Component {
         { withCredentials: true }
       )
       .then(response => {
+        console.log(response.data);
+
         if (response.data.logged_in) {
           this.props.handleSuccessfulAuth(response.data);
         }
@@ -42,11 +41,11 @@ class SignIn extends Component {
         console.log("login error", error);
       });
     event.preventDefault();
-  }
+  };
 
   render() {
     return (
-      <div>
+      <div id={"sign-in__container"}>
         <form onSubmit={this.handleSubmit}>
           <input
             type="username"

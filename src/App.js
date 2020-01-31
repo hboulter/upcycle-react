@@ -1,40 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
 import Search from "./Search";
+import SignIn from "./auth/SignIn";
+import SignUp from "./auth/SignUp";
+import NavBar from "./NavBar";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
+      loggedInStatus: false,
       user: {}
     };
-
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
   }
 
-  checkLoginStatus() {
+  checkLoginStatus = () => {
     axios
       .get("http://localhost:3001/logged_in", { withCredentials: true })
       .then(response => {
-        if (
-          response.data.logged_in &&
-          this.state.loggedInStatus === "NOT_LOGGED_IN"
-        )
+        const { logged_in, user } = response.data;
+        if (logged_in) {
           this.setState({
-            loggedInStatus: "LOGGED_IN",
-            user: response.data.user
+            loggedInStatus: true,
+            user
           });
-        else if (
-          !response.data.logged_in &
-          (this.state.loggedInStatus === "LOGGED_IN")
-        ) {
+        } else if (!logged_in) {
           this.setState({
-            loggedInStatus: "NOT_LOGGED_IN",
+            loggedInStatus: false,
             user: {}
           });
         }
@@ -42,58 +37,87 @@ class App extends Component {
       .catch(error => {
         console.log("check login error", error);
       });
-  }
+  };
 
   componentDidMount() {
     this.checkLoginStatus();
   }
 
-  handleLogout() {
+  handleLogout = () => {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN",
+      loggedInStatus: false,
       user: {}
     });
-  }
+  };
 
-  handleLogin(data) {
+  handleLogin = data => {
     this.setState({
-      loggedInStatus: "LOGGED_IN",
+      loggedInStatus: true,
       user: data.user
     });
     console.log(this.state.user);
-  }
+  };
+
+  handleSuccessfulAuth = data => {
+    this.handleLogin(data);
+    this.props.history.push("/"); // redirects user to "/search" page after sign in
+  };
 
   render() {
     return (
-      <div>
-        <Router>
-          <Switch>
-            <Route
-              exact
-              path={"/"}
-              render={props => (
-                <Home
-                  {...props}
-                  user={this.state.user}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.loggedInStatus}
-                />
-              )}
-            ></Route>
-            <Route
-              exact
-              path={"/search"}
-              render={props => (
-                <Search {...props} loggedInStatus={this.state.loggedInStatus} />
-              )}
-            ></Route>
-            {/* <Route exact path="/search" component={Search} /> */}
-          </Switch>
-        </Router>
-      </div>
+      <>
+        <NavBar
+          handleLogout={this.handleLogout}
+          handleSuccessfulAuth={this.handleSuccessfulAuth}
+          loggedInStatus={this.state.loggedInStatus}
+        />
+        <Switch>
+          <Route
+            exact
+            path={"/"}
+            render={props => (
+              <Home
+                {...props}
+                user={this.state.user}
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+                loggedInStatus={this.state.loggedInStatus}
+              />
+            )}
+          ></Route>
+          <Route
+            exact
+            path={"/search"}
+            render={props => (
+              <Search {...props} loggedInStatus={this.state.loggedInStatus} />
+            )}
+          ></Route>
+          <Route
+            exact
+            path="/signin"
+            render={props => (
+              <SignIn
+                {...props}
+                handleLogin={this.handleLogin}
+                handleSuccessfulAuth={this.handleSuccessfulAuth}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={props => (
+              <SignUp
+                {...props}
+                handleLogin={this.handleLogin}
+                handleSuccessfulAuth={this.handleSuccessfulAuth}
+              />
+            )}
+          />
+        </Switch>
+      </>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
