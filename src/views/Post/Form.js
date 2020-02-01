@@ -3,8 +3,8 @@ import React from "react";
 const Form = () => {
   return (
     <div className="form">
-      <select>
-        <option value="none" selected disabled hidden>
+      <select defaultValue="none">
+        <option value="none" disabled hidden>
           Please Select Item Condition
         </option>
         <option value="Poor">Poor</option>
@@ -15,7 +15,7 @@ const Form = () => {
       <br />
       <input className="form" type="text" placeholder="Description"></input>
       <br />
-      <input className="button" type="submit" value="Post" />
+      <input className="button button__primary" type="submit" value="Post" />
     </div>
   );
 };

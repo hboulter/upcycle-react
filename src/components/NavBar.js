@@ -2,16 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-const link = {
-  background: "gray",
-  color: "white",
-  cursor: "pointer",
-  margin: "0 6px 6px",
-  padding: "12px",
-  textDecoration: "none",
-  width: "100px"
-};
-
 const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
   const handleLogoutClick = () => {
     axios
@@ -24,10 +14,32 @@ const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
       });
     handleLogout();
   };
+
+  const activeStyles = {
+    borderBottom: "1px solid grey",
+    transition: "all 0.3s ease-in-out"
+  };
   return (
     <div className="nav-bar">
+      <NavLink to="/" exact className={"button"} activeStyle={activeStyles}>
+        Home
+      </NavLink>
+      <NavLink to="/post" exact className={"button"} activeStyle={activeStyles}>
+        Post
+      </NavLink>
+      <NavLink
+        to="/search"
+        exact
+        className={"button"}
+        activeStyle={activeStyles}
+      >
+        Search
+      </NavLink>
       {loggedInStatus ? (
-        <span style={link} onClick={() => handleLogoutClick()}>
+        <span
+          className={"button button__primary"}
+          onClick={() => handleLogoutClick()}
+        >
           Logout
         </span>
       ) : (
@@ -35,7 +47,7 @@ const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
           <NavLink
             to="/signin"
             exact
-            style={link}
+            className={"button button__primary"}
             activeStyle={{
               background: "darkblue"
             }}
@@ -45,7 +57,7 @@ const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
           <NavLink
             to="/signup"
             exact
-            style={link}
+            className={"button button__secondary"}
             activeStyle={{
               background: "darkblue"
             }}

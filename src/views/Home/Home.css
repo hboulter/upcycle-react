@@ -19,16 +19,3 @@
   font-weight: 400;
   letter-spacing: 20px;
 }
-
-.button {
-  background-color: gray;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  /* cursor: "pointer"; */
-  /* margin: "0 6px 6px"; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
