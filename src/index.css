@@ -30,7 +30,7 @@ body {
   background-color: rgb(245, 245, 245);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
   left: 0;
-  padding: 24px 24px;
+  padding: 16px 24px;
   position: fixed;
   text-align: right;
   right: 0;
@@ -45,7 +45,7 @@ body {
   display: inline-block;
   font-size: 14px;
   line-height: 18px;
-  margin: 0 6px 6px;
+  margin: 0 6px 0 6px;
   min-width: 100px;
   padding: 10px 20px;
   text-align: center;
@@ -68,4 +68,13 @@ body {
 .button.button__secondary:hover {
   transform: translateY(-2px);
   transition: all 0.3s ease-in-out;
+}
+
+.form {
+  text-align: center;
+}
+
+.form-input-box {
+  width: 315px;
+  height: 25px;
 }
