@@ -1,30 +1,29 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { DirectUpload } from "activestorage";
 
 class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user_id: null,
       status: false,
       condition: "",
-      description: ""
+      description: "",
+      image: null
     };
   }
 
-  // handleStatusChange = () => {
-  //   this.setState({
-  //     status: !this.state.status
-  //   });
-  // };
-
-  handleConditionChange = e => {
+  handleOnFormChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      user_id: this.props.user.id
     });
   };
 
-  handleDescriptionChange = e => {
+  handleUpload = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      image: e.currentTarget.files[0]
     });
   };
 
@@ -33,20 +32,62 @@ class Form extends Component {
     this.setState({
       status: !this.state.status
     });
-    console.log(this.state);
+
+    const post = {
+      user_id: this.state.user_id,
+      lat: this.props.lat,
+      lng: this.props.lng,
+      status: this.state.status,
+      condition: this.state.condition,
+      description: this.state.description,
+      image: this.state.image
+    };
+
+    axios
+      .post("http://localhost:3001/posts", post)
+      .then(data => {
+        if (data) {
+          console.log(data);
+
+          this.uploadFile(this.state.image, data.data);
+        }
+      })
+      .catch(error => console.log(error.response));
+  };
+
+  uploadFile = (file, post) => {
+    const upload = new DirectUpload(
+      file,
+      "http://localhost:3001/rails/active_storage/direct_uploads"
+    );
+    upload.create((error, blob) => {
+      if (error) {
+        console.log(error);
+      } else {
+        fetch(`http://localhost:3001/posts/${post.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({ image: blob.signed_id })
+        })
+          .then(response => response.json())
+          .then(result => console.log(result));
+      }
+    });
   };
 
   render() {
-    console.log(this.state.status);
-
+    // fix line 54!!!
     return (
       <div className="form">
         <form onSubmit={this.handlePost}>
-          <input type="file"></input>
+          <input type="file" onChange={this.handleUpload.bind(this)}></input>
           <select
             defaultValue="none"
             name="condition"
-            onChange={this.handleConditionChange}
+            onChange={this.handleOnFormChange}
           >
             <option value="none" disabled hidden>
               Please Select Item Condition
@@ -62,7 +103,7 @@ class Form extends Component {
             type="text"
             name="description"
             placeholder="Description"
-            onChange={this.handleDescriptionChange}
+            onChange={this.handleOnFormChange}
           ></input>
           <br />
           <br />
