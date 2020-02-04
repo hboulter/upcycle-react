@@ -112,7 +112,7 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/post" component={Post} />
+          <Route path="/post" render={() => <Post user={this.state.user} />} />
         </Switch>
       </>
     );

@@ -30,10 +30,51 @@ body {
   background-color: rgb(245, 245, 245);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
   left: 0;
-  padding: 24px 24px;
+  padding: 16px 24px;
   position: fixed;
   text-align: right;
   right: 0;
   top: 0;
   z-index: 1;
+}
+
+.button {
+  border: 1px solid rgb(245, 245, 245);
+  color: gray;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 6px 0 6px;
+  min-width: 100px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.button.button__primary {
+  background: gray;
+  color: white;
+}
+
+.button.button__secondary {
+  background: transparent;
+  border: 1px solid gray;
+}
+
+.button.button__primary:hover,
+.button.button__secondary:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease-in-out;
+}
+
+.form {
+  text-align: center;
+}
+
+.form-input-box {
+  width: 315px;
+  height: 25px;
 }
