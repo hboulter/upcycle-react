@@ -1,17 +1,25 @@
 import React from "react";
 import axios from "axios";
-import ItemCard from "./ItemCard";
-import "./Search.css";
+import Content from "./Content";
+import SearchBar from "./SearchBar";
+import "./Container.css";
 
 const API = "http://localhost:3001/posts";
 
-class Search extends React.Component {
+class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      searchInput: ""
     };
   }
+
+  handleSearchInput = event => {
+    this.setState({
+      searchInput: event.target.value
+    });
+  };
 
   componentDidMount() {
     axios
@@ -26,13 +34,19 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.posts.map(post => (
-          <ItemCard key={post.post.id} post={post.post} image={post.image} />
-        ))}
+      <div className="body">
+        <SearchBar
+          searchInput={this.state.searchInput}
+          handleSearchInput={this.handleSearchInput}
+        />
+        <br />
+        <Content
+          posts={this.state.posts}
+          searchInput={this.state.searchInput}
+        />
       </div>
     );
   }
 }
 
-export default Search;
+export default Container;

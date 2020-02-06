@@ -1,0 +1,28 @@
+.body {
+  padding: 25px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 25px;
+}
