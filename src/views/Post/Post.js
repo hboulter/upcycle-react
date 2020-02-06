@@ -13,10 +13,10 @@ const Post = ({ google, user }) => {
   const [address, setAddress] = useState({});
   const getAddress = () => {
     Geocode.fromLatLng(lat, lng).then(
-      res => {
+      response => {
         const {
           results: [{ address_components }]
-        } = res;
+        } = response;
 
         const addrArr = address_components.map(comp => comp.short_name);
         const address = addrArr.join(" ");

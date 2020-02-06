@@ -8,36 +8,45 @@ class Form extends Component {
     this.state = {
       user_id: null,
       status: false,
+      title: "",
       condition: "",
       description: "",
-      image: null
+      image: null,
+      imageUrl: null
     };
   }
 
   handleOnFormChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
-      user_id: this.props.user.id
+      user_id: this.props.user.id,
+      status: true
     });
   };
 
   handleUpload = e => {
-    this.setState({
-      image: e.currentTarget.files[0]
-    });
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        image: file,
+        imageUrl: fileReader
+      });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   };
 
   handlePost = e => {
     e.preventDefault();
-    this.setState({
-      status: !this.state.status
-    });
 
     const post = {
       user_id: this.state.user_id,
       lat: this.props.lat,
       lng: this.props.lng,
       status: this.state.status,
+      title: this.state.title,
       condition: this.state.condition,
       description: this.state.description,
       image: this.state.image
@@ -50,6 +59,9 @@ class Form extends Component {
           console.log(data);
 
           this.uploadFile(this.state.image, data.data);
+        }
+        if (data.data.id === null) {
+          alert("Must be logged in to make a post.");
         }
       })
       .catch(error => console.log(error.response));
@@ -79,11 +91,26 @@ class Form extends Component {
   };
 
   render() {
-    // fix line 54!!!
+    console.log(this.state.title);
+
     return (
       <div className="form">
         <form onSubmit={this.handlePost}>
-          <input type="file" onChange={this.handleUpload.bind(this)}></input>
+          <br />
+          <select
+            defaultValue="none"
+            name="title"
+            onChange={this.handleOnFormChange}
+          >
+            <option value="none" disabled hidden>
+              Please Select Item Category
+            </option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Other">Other</option>
+          </select>
+          <br />
           <select
             defaultValue="none"
             name="condition"
@@ -105,6 +132,9 @@ class Form extends Component {
             placeholder="Description"
             onChange={this.handleOnFormChange}
           ></input>
+          <br />
+          <br />
+          <input type="file" onChange={this.handleUpload.bind(this)}></input>
           <br />
           <br />
           <input
