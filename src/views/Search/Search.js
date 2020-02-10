@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import Content from "./Content";
 import SearchBar from "./SearchBar";
@@ -6,7 +6,7 @@ import "./Container.css";
 
 const API = "http://localhost:3001/posts";
 
-class Container extends React.Component {
+class Container extends Component {
   constructor() {
     super();
     this.state = {
@@ -43,6 +43,8 @@ class Container extends React.Component {
         <Content
           posts={this.state.posts}
           searchInput={this.state.searchInput}
+          loggedInStatus={this.props.loggedInStatus}
+          user={this.props.user}
         />
       </div>
     );

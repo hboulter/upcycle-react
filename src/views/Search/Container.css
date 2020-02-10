@@ -1,10 +1,20 @@
-.body {
-  padding: 25px;
+/* search page */
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  margin: 10px;
 }
 
 .card {
+  background-color: rgb(255, 255, 255);
+  width: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 3px;
 }
 
 .card:hover {
@@ -17,12 +27,57 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.container {
-  padding: 2px 16px;
+/* quick view */
+
+.item-detail__quickview {
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 25px;
+.quickview__modal {
+  background-color: rgb(245, 245, 245);
+  padding: 20px;
+  width: 75%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  display: table;
+}
+
+.quickview__map {
+  width: 50%;
+  display: table-cell;
+}
+
+.quickview__details {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.2rem;
+}
+
+.close-button {
+  color: #ccc;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

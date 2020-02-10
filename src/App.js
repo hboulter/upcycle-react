@@ -89,7 +89,11 @@ class App extends Component {
           <Route
             path={"/search"}
             render={props => (
-              <Search {...props} loggedInStatus={this.state.loggedInStatus} />
+              <Search
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
             )}
           ></Route>
           <Route

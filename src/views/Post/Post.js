@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Map from "../../components/Map";
+import Map from "../../components/PostMap";
 import Geocode from "react-geocode";
 import Form from "./Form";
 import "./Post.css";
@@ -34,14 +34,11 @@ const Post = ({ google, user }) => {
         address={address}
         center={{ lat, lng }}
         google={google}
-        height={"300px"}
+        height={"500px"}
         setLat={setLat}
         setLng={setLng}
         zoom={15}
       />
-      <br />
-      <br />
-      <br />
       <Form user={user} lat={lat} lng={lng} />
     </div>
   );
