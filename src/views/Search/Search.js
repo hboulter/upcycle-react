@@ -21,6 +21,20 @@ class Container extends Component {
     });
   };
 
+  changePost = e => {
+    let posts = this.state.posts.filter(
+      post => post.post.id !== parseInt(e.target.value)
+    );
+    this.setState({ posts: posts });
+    axios
+      .patch(`http://localhost:3001/update/${e.target.value}`, {
+        post: {
+          status: false
+        }
+      })
+      .then(response => console.log(response));
+  };
+
   componentDidMount() {
     axios
       .get(API)
@@ -45,6 +59,7 @@ class Container extends Component {
           searchInput={this.state.searchInput}
           loggedInStatus={this.props.loggedInStatus}
           user={this.props.user}
+          changePost={this.changePost}
         />
       </div>
     );

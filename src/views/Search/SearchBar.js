@@ -2,9 +2,10 @@ import React from "react";
 
 const SearchBar = ({ handleSearchInput }) => {
   return (
-    <div className="filter">
+    <div className="search__container">
       <input
-        id="search-bar"
+        // id="search-bar"
+        className="search__input"
         type="text"
         placeholder="Search Posts"
         onChange={handleSearchInput}

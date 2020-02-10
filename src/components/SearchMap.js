@@ -8,7 +8,9 @@ import {
 
 const googleMapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
-const SearchMap = ({ center, height, zoom }) => {
+const SearchMap = ({ center, height, zoom, address }) => {
+  // console.log(address); // why is address undefined when it should be passed down from Post.js
+
   const AsyncMap = withScriptjs(
     withGoogleMap(() => (
       <>

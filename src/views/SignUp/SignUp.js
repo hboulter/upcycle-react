@@ -50,58 +50,60 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div id="sign-up__container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form__group">
-            <input
-              autoComplete="off"
-              type="username"
-              name="username"
-              id="username"
-              className="form__input"
-              placeholder="Username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              required
-            />
-            <label for="username" className="form__label">
-              Username
-            </label>
-          </div>
-          <div className="form__group">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="form__input"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-            <label for="password" className="form__label">
-              Password
-            </label>
-          </div>
-          <div className="form__group">
-            <input
-              type="password"
-              name="password_confirmation"
-              id="password_confirmation"
-              className="form__input"
-              placeholder="Password Confirmation"
-              value={this.state.password_confirmation}
-              onChange={this.handleChange}
-              required
-            />
-            <label for="password_confirmation" className="form__label">
-              Password Confirmation
-            </label>
-          </div>
-          <button type="submit" className="button button__primary">
-            Sign Up
-          </button>
-        </form>
+      <div className="background">
+        <div id="sign-up__container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form__group">
+              <input
+                autoComplete="off"
+                type="username"
+                name="username"
+                id="username"
+                className="form__input"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                required
+              />
+              <label for="username" className="form__label">
+                Username
+              </label>
+            </div>
+            <div className="form__group">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="form__input"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                required
+              />
+              <label for="password" className="form__label">
+                Password
+              </label>
+            </div>
+            <div className="form__group">
+              <input
+                type="password"
+                name="password_confirmation"
+                id="password_confirmation"
+                className="form__input"
+                placeholder="Password Confirmation"
+                value={this.state.password_confirmation}
+                onChange={this.handleChange}
+                required
+              />
+              <label for="password_confirmation" className="form__label">
+                Password Confirmation
+              </label>
+            </div>
+            <button type="submit" className="button button__primary">
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

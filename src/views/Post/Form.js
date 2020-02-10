@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { DirectUpload } from "activestorage";
-import "./Form.css";
+import "./Post.css";
 
 class Form extends Component {
   constructor(props) {
@@ -122,54 +122,63 @@ class Form extends Component {
   };
 
   render() {
-    console.log(this.state.title);
-
     return (
       <div className="form">
         <form onSubmit={this.handlePost}>
-          <br />
-          <select
-            defaultValue="none"
-            name="title"
-            onChange={this.handleOnFormChange}
-          >
-            <option value="none" disabled hidden>
-              Please Select Item Category
-            </option>
-            <option value="Furniture">Furniture</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Other">Other</option>
-          </select>
-          <br />
-          <select
-            defaultValue="none"
-            name="condition"
-            onChange={this.handleOnFormChange}
-          >
-            <option value="none" disabled hidden>
-              Please Select Item Condition
-            </option>
-            <option value="Poor">Poor</option>
-            <option value="Fair">Fair</option>
-            <option value="Good">Good</option>
-            <option value="New">Like New</option>
-          </select>
-          <br /> <br />
-          <textarea
-            autoComplete="off"
-            className="text-box"
-            name="description"
-            onChange={this.handleOnFormChange}
-            placeholder="Description"
-          ></textarea>
-          <br />
-          <br />
-          <input type="file" onChange={this.handleUpload.bind(this)}></input>
+          <div className="form__right">
+            <select
+              defaultValue="none"
+              name="title"
+              className="container dropdown"
+              onChange={this.handleOnFormChange}
+            >
+              <option value="none" disabled hidden>
+                Category
+              </option>
+              <option value="Furniture">Furniture</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Other">Other</option>
+            </select>
+            <br />
+            <select
+              defaultValue="none"
+              name="condition"
+              className="container dropdown"
+              onChange={this.handleOnFormChange}
+            >
+              <option value="none" disabled hidden>
+                Condition
+              </option>
+              <option value="Poor">Poor</option>
+              <option value="Fair">Fair</option>
+              <option value="Good">Good</option>
+              <option value="New">Like New</option>
+            </select>
+            <br />
+            <label for="upload" className="file-upload">
+              Image
+            </label>
+            <input
+              id="upload"
+              type="file"
+              className="file-upload__input"
+              onChange={this.handleUpload.bind(this)}
+            ></input>
+          </div>
+          <div className="form__left">
+            <textarea
+              autoComplete="off"
+              className="text-box"
+              name="description"
+              onChange={this.handleOnFormChange}
+              placeholder="Description"
+            ></textarea>
+          </div>
           <br />
           <br />
           <input
-            className="button button__primary"
+            className="submit button button__primary"
             type="submit"
             value="Post"
           />
