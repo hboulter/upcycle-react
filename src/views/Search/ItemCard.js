@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import ItemDetail from "./ItemDetail";
 
-const ItemCard = ({ post, image, loggedInStatus }) => {
+const ItemCard = ({ post, image, loggedInStatus, changePost }) => {
   const [showDetail, setShowDetail] = useState(false);
   const [newStatus, setNewStatus] = useState(post.status);
-  // const [showPost, setShowPost] = useState(post.id);
 
   const handleShowDetails = () => {
     if (loggedInStatus) {
@@ -14,9 +13,10 @@ const ItemCard = ({ post, image, loggedInStatus }) => {
     }
   };
 
-  const updatePostStatus = () => {
+  const updatePostStatus = e => {
     setNewStatus(false);
     setShowDetail(!showDetail);
+    changePost(e);
   };
 
   return (

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchMap from "../../components/SearchMap";
 
 const ItemDetail = ({
-  post: { condition, description, lat, lng, title },
+  post: { condition, description, lat, lng, title, id },
   showDetail,
   setShowDetail,
   updatePostStatus
 }) => {
+  console.log(id);
+
   return (
     <div className={"item-detail__quickview"}>
       <div className={"quickview__modal"}>
@@ -28,12 +30,13 @@ const ItemDetail = ({
           Description: {description}
           <br />
           <br />
-          <span
+          <button
+            value={id}
             className="button button__primary"
-            onClick={() => updatePostStatus()}
+            onClick={e => updatePostStatus(e)}
           >
             Claim
-          </span>
+          </button>
         </div>
       </div>
     </div>
