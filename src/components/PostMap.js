@@ -7,10 +7,11 @@ import {
   Marker
 } from "react-google-maps";
 import Autocomplete from "react-google-autocomplete";
+import "./Map.css";
 
 const googleMapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
-class Map extends Component {
+class PostMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,17 +52,32 @@ class Map extends Component {
     const AsyncMap = withScriptjs(
       withGoogleMap(props => (
         <>
-          <button onClick={() => this.getCurrentLocation()}>
-            Current Location
-          </button>
           <GoogleMap
             google={this.props.google}
+            defaultOptions={{
+              mapTypeControl: false,
+              streetViewControl: false,
+              fullscreenControl: false,
+              zoomControl: false
+            }}
             defaultZoom={this.props.zoom}
             defaultCenter={{
               lat: this.props.center.lat,
               lng: this.props.center.lng
             }}
           >
+            <span
+              id="currentLocation__button"
+              className="button button__primary"
+              onClick={() => this.getCurrentLocation()}
+            >
+              Current Location
+            </span>
+            <Autocomplete
+              className="autocomplete__input"
+              onPlaceSelected={this.onPlaceSelected}
+              types={"address"}
+            />
             {this.state.showInfoWindow ? (
               <InfoWindow
                 position={{
@@ -88,17 +104,6 @@ class Map extends Component {
               }}
             />
             <Marker />
-            <Autocomplete
-              style={{
-                width: "100%",
-                height: "35px",
-                paddingLeft: "16px",
-                marginTop: "5px",
-                marginBottom: "100px"
-              }}
-              onPlaceSelected={this.onPlaceSelected}
-              types={"address"}
-            />
           </GoogleMap>
         </>
       ))
@@ -106,7 +111,7 @@ class Map extends Component {
     let map;
     if (this.props.center.lat !== undefined) {
       map = (
-        <div>
+        <div id="google-maps__container">
           <AsyncMap
             googleMapURL={googleMapUrl}
             loadingElement={<div style={{ height: `100%` }} />}
@@ -122,4 +127,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default PostMap;

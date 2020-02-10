@@ -1,0 +1,21 @@
+#google-maps__container {
+  position: relative;
+}
+
+.autocomplete__input {
+  height: 40px;
+  left: 8px;
+  padding: 8px;
+  position: absolute;
+  top: 8px;
+  width: calc(100% - 210px);
+}
+
+#currentLocation__button {
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  right: 8px;
+  text-align: center;
+  top: 8px;
+}
