@@ -35,15 +35,19 @@ class Container extends Component {
       .then(response => console.log(response));
   };
 
-  componentDidMount() {
+  getData = () => {
     axios
       .get(API)
-      .then(response => {
-        this.setState({ posts: response.data });
+      .then(({ data }) => {
+        this.setState({ posts: data });
       })
       .catch(error => {
         console.log(error);
       });
+  };
+
+  componentDidMount() {
+    axios.delete(API).then(() => this.getData());
   }
 
   render() {

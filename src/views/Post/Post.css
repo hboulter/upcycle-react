@@ -4,28 +4,44 @@
 
 .form {
   background-color: rgba(245, 245, 245, 0.9);
-  text-align: center;
-  padding: 45px;
-  margin: 20px;
-  width: auto;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 45px;
+  text-align: center;
+  width: 100%;
+}
+
+.form form {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .form__right {
-  width: 50%;
-  float: left;
+  flex-basis: 50%;
 }
 
 .form__left {
-  width: 50%;
-  float: left;
+  flex-basis: 50%;
+}
+
+.form__left label {
+  display: block;
+  text-align: left;
+  margin-bottom: 16px;
 }
 
 .text-box {
-  width: 410px;
+  border-radius: 8px;
+  box-sizing: border-box;
   height: 150px;
+  outline: none;
+  padding: 8px;
   resize: none;
-  border-radius: 3px;
+  width: 410px;
 }
 
 .container {
@@ -42,12 +58,13 @@
 .dropdown {
   display: inline-block;
   position: relative;
+  outline: none;
   overflow: hidden;
   height: 28px;
   background: #f2f2f2;
   border: 1px solid;
   border-color: white #f7f7f7 whitesmoke;
-  border-radius: 3px;
+  border-radius: 8px;
   background-image: -webkit-linear-gradient(
     top,
     transparent,
@@ -163,4 +180,5 @@
 
 .submit {
   margin-top: 40px;
+  outline: none;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
+const Navbar = ({ handleLogout, loggedInStatus }) => {
   const handleLogoutClick = () => {
     axios
       .delete("http://localhost:3001/logout", { withCredentials: true })
@@ -24,9 +24,18 @@ const Navbar = ({ handleLogout, handleSuccessfulAuth, loggedInStatus }) => {
       <NavLink to="/" exact className={"button"} activeStyle={activeStyles}>
         Home
       </NavLink>
-      <NavLink to="/post" exact className={"button"} activeStyle={activeStyles}>
-        Post
-      </NavLink>
+      {loggedInStatus ? (
+        <NavLink
+          to="/post"
+          exact
+          className={"button"}
+          activeStyle={activeStyles}
+        >
+          Post
+        </NavLink>
+      ) : (
+        <></>
+      )}
       <NavLink
         to="/search"
         exact

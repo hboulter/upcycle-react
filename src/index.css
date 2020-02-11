@@ -16,7 +16,7 @@ body {
     rgba(62, 96, 111, 0.6),
     rgba(25, 52, 65, 0.6)
   );
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .nav-bar {
@@ -49,11 +49,14 @@ body {
 
 .button.button__primary {
   background: gray;
+  border-radius: 25px;
   color: white;
+  outline: none;
 }
 
 .button.button__secondary {
   background: transparent;
+  border-radius: 25px;
   border: 1px solid gray;
 }
 
