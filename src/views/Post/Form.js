@@ -14,32 +14,10 @@ class Form extends Component {
       description: "",
       image: null,
       imageUrl: null,
-
+      imageName: "",
       errors: []
     };
   }
-
-  // validation = (title, condition, description, image) => {
-  //   const errors = [];
-
-  //   if (title.length === 0) {
-  //     errors.push("Category can't be empty");
-  //   }
-
-  //   if (condition.length === 0) {
-  //     errors.push("Condition can't be empty");
-  //   }
-
-  //   if (description.length === 0) {
-  //     errors.push("Description can't be empty");
-  //   }
-
-  //   if (image.length === 0) {
-  //     errors.push("Image can't be empty");
-  //   }
-
-  //   return errors;
-  // };
 
   handleOnFormChange = e => {
     this.setState({
@@ -55,7 +33,8 @@ class Form extends Component {
     fileReader.onloadend = () => {
       this.setState({
         image: file,
-        imageUrl: fileReader
+        imageUrl: fileReader,
+        imageName: file.name
       });
     };
     if (file) {
@@ -77,8 +56,6 @@ class Form extends Component {
       image: this.state.image
     };
 
-    // const errors = this.validation(title, condition, description, image);
-
     axios
       .post("http://localhost:3001/posts", post)
       .then(data => {
@@ -90,10 +67,6 @@ class Form extends Component {
         if (data.data.id === null) {
           alert("Must be logged in to make a post.");
         }
-        // if (errors.length > 0) {
-        //   this.setState({ errors });
-        //   return;
-        // }
       })
       .catch(error => console.log(error.response));
   };
@@ -159,6 +132,11 @@ class Form extends Component {
             <label for="upload" className="file-upload">
               Image
             </label>
+            <span className="file-path">
+              {this.state.imageName.length > 10
+                ? `${this.state.imageName.substring(0, 10)}...`
+                : this.state.imageName}
+            </span>
             <input
               id="upload"
               type="file"
@@ -167,16 +145,16 @@ class Form extends Component {
             ></input>
           </div>
           <div className="form__left">
+            <label htmlFor="description">Description:</label>
             <textarea
               autoComplete="off"
               className="text-box"
               name="description"
               onChange={this.handleOnFormChange}
-              placeholder="Description"
+              value={this.state.description}
+              placeholder="e.g. In the alley behind the SXSW building"
             ></textarea>
           </div>
-          <br />
-          <br />
           <input
             className="submit button button__primary"
             type="submit"

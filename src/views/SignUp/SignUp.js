@@ -36,14 +36,9 @@ class SignUp extends Component {
         },
         { withCredentials: true }
       )
-      .then(response => {
-        if (response.data.status === "created") {
-          this.props.handleSuccessfulAuth(response.data);
-        }
-        // console.log("registration response", response);
-      })
+      .then(response => this.props.handleSuccessfulAuth(response.data))
       .catch(error => {
-        console.log("registration error", error);
+        alert("Username taken");
       });
     event.preventDefault();
   }

@@ -1,14 +1,15 @@
 import React from "react";
 import ItemCard from "./ItemCard";
+import "./Content.css";
 
 const Content = ({ posts, searchInput, loggedInStatus, user, changePost }) => {
   return (
-    <div>
+    <div className="grid" id="post__container">
       {posts
         .filter(
-          post =>
-            post.post.title.toLowerCase().includes(searchInput.toLowerCase()) &&
-            post.post.status !== false
+          ({ post }) =>
+            post.title.toLowerCase().includes(searchInput.toLowerCase()) &&
+            post.status !== false
         )
         .map(({ post, image }) => (
           <ItemCard
