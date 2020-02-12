@@ -20,61 +20,66 @@ const Navbar = ({ handleLogout, loggedInStatus }) => {
     transition: "all 0.3s ease-in-out"
   };
   return (
-    <div className="nav-bar">
-      <NavLink to="/" exact className={"button"} activeStyle={activeStyles}>
-        Home
-      </NavLink>
-      {loggedInStatus ? (
+    <div>
+      <div className="nav-bar">
+        <div className="header__logo-box">
+          <img src="logo.png" alt="Logo" className="header__logo" />
+        </div>
+        <NavLink to="/" exact className={"button"} activeStyle={activeStyles}>
+          Home
+        </NavLink>
+        {loggedInStatus ? (
+          <NavLink
+            to="/post"
+            exact
+            className={"button"}
+            activeStyle={activeStyles}
+          >
+            Post
+          </NavLink>
+        ) : (
+          <></>
+        )}
         <NavLink
-          to="/post"
+          to="/search"
           exact
           className={"button"}
           activeStyle={activeStyles}
         >
-          Post
+          Search
         </NavLink>
-      ) : (
-        <></>
-      )}
-      <NavLink
-        to="/search"
-        exact
-        className={"button"}
-        activeStyle={activeStyles}
-      >
-        Search
-      </NavLink>
-      {loggedInStatus ? (
-        <span
-          className={"button button__primary"}
-          onClick={() => handleLogoutClick()}
-        >
-          Logout
-        </span>
-      ) : (
-        <>
-          <NavLink
-            to="/signin"
-            exact
+        {loggedInStatus ? (
+          <span
             className={"button button__primary"}
-            activeStyle={{
-              background: "darkblue"
-            }}
+            onClick={() => handleLogoutClick()}
           >
-            Sign In
-          </NavLink>
-          <NavLink
-            to="/signup"
-            exact
-            className={"button button__secondary"}
-            activeStyle={{
-              background: "darkblue"
-            }}
-          >
-            Sign Up
-          </NavLink>
-        </>
-      )}
+            Logout
+          </span>
+        ) : (
+          <>
+            <NavLink
+              to="/signin"
+              exact
+              className={"button button__primary"}
+              activeStyle={{
+                background: "darkblue"
+              }}
+            >
+              Sign In
+            </NavLink>
+            <NavLink
+              to="/signup"
+              exact
+              className={"button button__secondary"}
+              activeStyle={{
+                background: "darkblue"
+              }}
+            >
+              Sign Up
+            </NavLink>
+          </>
+        )}
+      </div>
     </div>
   );
 };

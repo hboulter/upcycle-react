@@ -38,7 +38,7 @@ class SignUp extends Component {
       )
       .then(response => this.props.handleSuccessfulAuth(response.data))
       .catch(error => {
-        alert("Username taken");
+        alert("Invalid submission. Username taken or password does not match.");
       });
     event.preventDefault();
   }

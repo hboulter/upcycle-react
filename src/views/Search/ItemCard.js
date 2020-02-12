@@ -32,6 +32,7 @@ const ItemCard = ({ post, image, loggedInStatus, changePost }) => {
       {showDetail ? (
         <ItemDetail
           post={post}
+          image={image}
           showDetail={showDetail}
           setShowDetail={setShowDetail}
           updatePostStatus={updatePostStatus}
