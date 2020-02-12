@@ -37,6 +37,9 @@ class SignIn extends Component {
         if (response.data.logged_in) {
           this.props.handleSuccessfulAuth(response.data);
         }
+        if (!response.data.logged_in) {
+          alert("Incorrect username or password.");
+        }
       })
       .catch(error => {
         console.log("login error", error);

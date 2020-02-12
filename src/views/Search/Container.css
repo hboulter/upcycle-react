@@ -42,7 +42,7 @@
 }
 
 .quickview__modal {
-  background-color: rgb(245, 245, 245);
+  background-color: lightgrey;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(0, 0, 0, 0.35);
   display: table;
@@ -57,6 +57,7 @@
 .quickview__map {
   display: table-cell;
   width: 50%;
+  padding: 20px;
 }
 
 .quickview__details {
@@ -66,8 +67,36 @@
   width: 50%;
 }
 
+.quickview__image {
+  padding: 10px;
+}
+
+.quickview__info {
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: #95bdc7;
+}
+
+.quickview__description {
+  display: inline-block;
+  margin: 20px 0px 0px 20px;
+  padding: 25px;
+  height: min-content;
+  border: 1px solid black;
+}
+
+.vl {
+  border-left: 6px solid #a4c795;
+  /* height: 500px; */
+}
+
+.description {
+  /* text-transform: lowercase; */
+  /* letter-spacing: 5px; */
+}
+
 .close-button {
-  color: #ccc;
+  color: darkgray;
   display: inline-block;
   font-size: 2rem;
   line-height: 1;
@@ -122,4 +151,9 @@
   border-bottom: 1px solid #575756;
   border-radius: 0;
   background-position: 100% center;
+}
+
+.claim {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

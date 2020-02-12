@@ -42,6 +42,10 @@ class Form extends Component {
     }
   };
 
+  postSubmitted = () => {
+    alert("Post successfully submitted");
+  };
+
   handlePost = e => {
     e.preventDefault();
 
@@ -126,7 +130,7 @@ class Form extends Component {
               <option value="Poor">Poor</option>
               <option value="Fair">Fair</option>
               <option value="Good">Good</option>
-              <option value="New">Like New</option>
+              <option value="Like New">Like New</option>
             </select>
             <br />
             <label for="upload" className="file-upload">
@@ -159,6 +163,7 @@ class Form extends Component {
             className="submit button button__primary"
             type="submit"
             value="Post"
+            onClick={() => this.postSubmitted()}
           />
         </form>
       </div>
