@@ -43,7 +43,7 @@ class Form extends Component {
   };
 
   postSubmitted = () => {
-    alert("Post successfully submitted");
+    alert("Post successfully submitted!");
   };
 
   handlePost = e => {
