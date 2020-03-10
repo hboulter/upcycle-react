@@ -22,7 +22,7 @@ class SignIn extends Component {
     const { username, password } = this.state;
     axios
       .post(
-        "http://localhost:3001/sessions",
+        "https://afternoon-river-07186.herokuapp.com/sessions",
         {
           user: {
             username: username,

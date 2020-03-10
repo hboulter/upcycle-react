@@ -5,7 +5,9 @@ import axios from "axios";
 const Navbar = ({ handleLogout, loggedInStatus }) => {
   const handleLogoutClick = () => {
     axios
-      .delete("http://localhost:3001/logout", { withCredentials: true })
+      .delete("https://afternoon-river-07186.herokuapp.com/logout", {
+        withCredentials: true
+      })
       .then(_response => {
         handleLogout();
       })

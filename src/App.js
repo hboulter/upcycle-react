@@ -20,7 +20,9 @@ class App extends Component {
 
   checkLoginStatus = () => {
     axios
-      .get("http://localhost:3001/logged_in", { withCredentials: true })
+      .get("https://afternoon-river-07186.herokuapp.com/logged_in", {
+        withCredentials: true
+      })
       .then(response => {
         const { logged_in, user } = response.data;
         if (logged_in) {

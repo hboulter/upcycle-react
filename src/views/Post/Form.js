@@ -61,7 +61,7 @@ class Form extends Component {
     };
 
     axios
-      .post("http://localhost:3001/posts", post)
+      .post("https://afternoon-river-07186.herokuapp.com/posts", post)
       .then(data => {
         if (data) {
           console.log(data);
@@ -78,13 +78,13 @@ class Form extends Component {
   uploadFile = (file, post) => {
     const upload = new DirectUpload(
       file,
-      "http://localhost:3001/rails/active_storage/direct_uploads"
+      "https://afternoon-river-07186.herokuapp.com/rails/active_storage/direct_uploads"
     );
     upload.create((error, blob) => {
       if (error) {
         console.log(error);
       } else {
-        fetch(`http://localhost:3001/posts/${post.id}`, {
+        fetch(`https://afternoon-river-07186.herokuapp.com/posts/${post.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

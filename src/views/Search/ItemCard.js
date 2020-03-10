@@ -21,7 +21,7 @@ const ItemCard = ({ post, image, loggedInStatus, changePost }) => {
     <>
       <span className="column card" onClick={() => handleShowDetails()}>
         <img
-          src={`http://localhost:3001/${image}`}
+          src={`https://afternoon-river-07186.herokuapp.com/${image}`}
           alt="oh no!"
           style={{ maxWidth: "100%" }}
           width="auto"

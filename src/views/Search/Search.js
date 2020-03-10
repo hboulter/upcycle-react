@@ -4,7 +4,7 @@ import Content from "./Content";
 import SearchBar from "./SearchBar";
 import "./Container.css";
 
-const API = "http://localhost:3001/posts";
+const API = "https://afternoon-river-07186.herokuapp.com/posts";
 
 class Container extends Component {
   constructor() {
@@ -27,11 +27,14 @@ class Container extends Component {
     );
     this.setState({ posts: posts });
     axios
-      .patch(`http://localhost:3001/update/${e.target.value}`, {
-        post: {
-          status: false
+      .patch(
+        `https://afternoon-river-07186.herokuapp.com/update/${e.target.value}`,
+        {
+          post: {
+            status: false
+          }
         }
-      })
+      )
       .then(response => console.log(response));
   };
 

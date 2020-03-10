@@ -28,7 +28,7 @@ const ItemDetail = ({
             <div className="quickview__image">
               <img
                 className="quickview__image"
-                src={`http://localhost:3001/${image}`}
+                src={`https://afternoon-river-07186.herokuapp.com/${image}`}
                 alt="oh no!"
                 style={{ maxWidth: "100%" }}
                 width="auto"

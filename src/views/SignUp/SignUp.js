@@ -26,7 +26,7 @@ class SignUp extends Component {
     const { username, password, password_confirmation } = this.state;
     axios
       .post(
-        "http://localhost:3001/users",
+        "https://afternoon-river-07186.herokuapp.com/users",
         {
           user: {
             username: username,
