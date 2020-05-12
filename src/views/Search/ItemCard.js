@@ -12,7 +12,7 @@ const ItemCard = ({ post, image, loggedInStatus, changePost }) => {
     }
   };
 
-  const updatePostStatus = e => {
+  const updatePostStatus = (e) => {
     setShowDetail(!showDetail);
     changePost(e);
   };
@@ -21,7 +21,7 @@ const ItemCard = ({ post, image, loggedInStatus, changePost }) => {
     <>
       <span className="column card" onClick={() => handleShowDetails()}>
         <img
-          src={`https://afternoon-river-07186.herokuapp.com/${image}`}
+          src={`http://localhost:3001/${image}`}
           alt="oh no!"
           style={{ maxWidth: "100%" }}
           width="auto"

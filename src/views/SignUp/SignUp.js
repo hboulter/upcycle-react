@@ -9,7 +9,7 @@ class SignUp extends Component {
       username: "",
       password: "",
       password_confirmation: "",
-      SignUpErrors: ""
+      SignUpErrors: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,7 @@ class SignUp extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -26,18 +26,18 @@ class SignUp extends Component {
     const { username, password, password_confirmation } = this.state;
     axios
       .post(
-        "https://afternoon-river-07186.herokuapp.com/users",
+        "http://localhost:3001/users",
         {
           user: {
             username: username,
             password: password,
-            password_confirmation: password_confirmation
-          }
+            password_confirmation: password_confirmation,
+          },
         },
         { withCredentials: true }
       )
-      .then(response => this.props.handleSuccessfulAuth(response.data))
-      .catch(error => {
+      .then((response) => this.props.handleSuccessfulAuth(response.data))
+      .catch((error) => {
         alert("Invalid submission. Username taken or password does not match.");
       });
     event.preventDefault();

@@ -6,7 +6,7 @@ const ItemDetail = ({
   image,
   showDetail,
   setShowDetail,
-  updatePostStatus
+  updatePostStatus,
 }) => {
   console.log(id);
 
@@ -28,7 +28,7 @@ const ItemDetail = ({
             <div className="quickview__image">
               <img
                 className="quickview__image"
-                src={`https://afternoon-river-07186.herokuapp.com/${image}`}
+                src={`http://localhost:3001/${image}`}
                 alt="oh no!"
                 style={{ maxWidth: "100%" }}
                 width="auto"
@@ -46,7 +46,7 @@ const ItemDetail = ({
             <button
               value={id}
               className="claim button button__primary"
-              onClick={e => updatePostStatus(e)}
+              onClick={(e) => updatePostStatus(e)}
             >
               Claim
             </button>

@@ -4,38 +4,35 @@ import Content from "./Content";
 import SearchBar from "./SearchBar";
 import "./Container.css";
 
-const API = "https://afternoon-river-07186.herokuapp.com/posts";
+const API = "http://localhost:3001/posts";
 
 class Container extends Component {
   constructor() {
     super();
     this.state = {
       posts: [],
-      searchInput: ""
+      searchInput: "",
     };
   }
 
-  handleSearchInput = event => {
+  handleSearchInput = (event) => {
     this.setState({
-      searchInput: event.target.value
+      searchInput: event.target.value,
     });
   };
 
-  changePost = e => {
+  changePost = (e) => {
     let posts = this.state.posts.filter(
-      post => post.post.id !== parseInt(e.target.value)
+      (post) => post.post.id !== parseInt(e.target.value)
     );
     this.setState({ posts: posts });
     axios
-      .patch(
-        `https://afternoon-river-07186.herokuapp.com/update/${e.target.value}`,
-        {
-          post: {
-            status: false
-          }
-        }
-      )
-      .then(response => console.log(response));
+      .patch(`http://localhost:3001/update/${e.target.value}`, {
+        post: {
+          status: false,
+        },
+      })
+      .then((response) => console.log(response));
   };
 
   getData = () => {
@@ -44,7 +41,7 @@ class Container extends Component {
       .then(({ data }) => {
         this.setState({ posts: data });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };

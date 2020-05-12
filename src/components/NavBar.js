@@ -5,13 +5,13 @@ import axios from "axios";
 const Navbar = ({ handleLogout, loggedInStatus }) => {
   const handleLogoutClick = () => {
     axios
-      .delete("https://afternoon-river-07186.herokuapp.com/logout", {
-        withCredentials: true
+      .delete("http://localhost:3001/logout", {
+        withCredentials: true,
       })
-      .then(_response => {
+      .then((_response) => {
         handleLogout();
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("logout error", error);
       });
     handleLogout();
@@ -19,7 +19,7 @@ const Navbar = ({ handleLogout, loggedInStatus }) => {
 
   const activeStyles = {
     borderBottom: "1px solid grey",
-    transition: "all 0.3s ease-in-out"
+    transition: "all 0.3s ease-in-out",
   };
   return (
     <div>
@@ -64,7 +64,7 @@ const Navbar = ({ handleLogout, loggedInStatus }) => {
               exact
               className={"button button__primary"}
               activeStyle={{
-                background: "darkblue"
+                background: "darkblue",
               }}
             >
               Sign In
@@ -74,7 +74,7 @@ const Navbar = ({ handleLogout, loggedInStatus }) => {
               exact
               className={"button button__secondary"}
               activeStyle={{
-                background: "darkblue"
+                background: "darkblue",
               }}
             >
               Sign Up

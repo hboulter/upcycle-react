@@ -14,30 +14,30 @@ class App extends Component {
     super();
     this.state = {
       loggedInStatus: false,
-      user: {}
+      user: {},
     };
   }
 
   checkLoginStatus = () => {
     axios
-      .get("https://afternoon-river-07186.herokuapp.com/logged_in", {
-        withCredentials: true
+      .get("http://localhost:3001/logged_in", {
+        withCredentials: true,
       })
-      .then(response => {
+      .then((response) => {
         const { logged_in, user } = response.data;
         if (logged_in) {
           this.setState({
             loggedInStatus: true,
-            user
+            user,
           });
         } else if (!logged_in) {
           this.setState({
             loggedInStatus: false,
-            user: {}
+            user: {},
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("check login error", error);
       });
   };
@@ -49,19 +49,19 @@ class App extends Component {
   handleLogout = () => {
     this.setState({
       loggedInStatus: false,
-      user: {}
+      user: {},
     });
   };
 
-  handleLogin = data => {
+  handleLogin = (data) => {
     this.setState({
       loggedInStatus: true,
-      user: data.user
+      user: data.user,
     });
     console.log(this.state.user);
   };
 
-  handleSuccessfulAuth = data => {
+  handleSuccessfulAuth = (data) => {
     this.handleLogin(data);
     this.props.history.push("/"); // redirects user to "/search" page after sign in
   };
@@ -78,7 +78,7 @@ class App extends Component {
           <Route
             exact
             path={"/"}
-            render={props => (
+            render={(props) => (
               <Home
                 {...props}
                 user={this.state.user}
@@ -90,7 +90,7 @@ class App extends Component {
           ></Route>
           <Route
             path={"/search"}
-            render={props => (
+            render={(props) => (
               <Search
                 {...props}
                 loggedInStatus={this.state.loggedInStatus}
@@ -100,7 +100,7 @@ class App extends Component {
           ></Route>
           <Route
             path="/signin"
-            render={props => (
+            render={(props) => (
               <SignIn
                 {...props}
                 handleLogin={this.handleLogin}
@@ -110,7 +110,7 @@ class App extends Component {
           />
           <Route
             path="/signup"
-            render={props => (
+            render={(props) => (
               <SignUp
                 {...props}
                 handleLogin={this.handleLogin}

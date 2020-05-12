@@ -8,30 +8,30 @@ class SignIn extends Component {
     this.state = {
       username: "",
       password: "",
-      loginErrors: ""
+      loginErrors: "",
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     const { username, password } = this.state;
     axios
       .post(
-        "https://afternoon-river-07186.herokuapp.com/sessions",
+        "http://localhost:3001/sessions",
         {
           user: {
             username: username,
-            password: password
-          }
+            password: password,
+          },
         },
         { withCredentials: true }
       )
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
 
         if (response.data.logged_in) {
@@ -41,7 +41,7 @@ class SignIn extends Component {
           alert("Incorrect username or password.");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("login error", error);
       });
     event.preventDefault();

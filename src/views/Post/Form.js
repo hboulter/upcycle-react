@@ -15,26 +15,26 @@ class Form extends Component {
       image: null,
       imageUrl: null,
       imageName: "",
-      errors: []
+      errors: [],
     };
   }
 
-  handleOnFormChange = e => {
+  handleOnFormChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
       user_id: this.props.user.id,
-      status: true
+      status: true,
     });
   };
 
-  handleUpload = e => {
+  handleUpload = (e) => {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({
         image: file,
         imageUrl: fileReader,
-        imageName: file.name
+        imageName: file.name,
       });
     };
     if (file) {
@@ -46,7 +46,7 @@ class Form extends Component {
     alert("Post successfully submitted!");
   };
 
-  handlePost = e => {
+  handlePost = (e) => {
     e.preventDefault();
 
     const post = {
@@ -57,12 +57,12 @@ class Form extends Component {
       title: this.state.title,
       condition: this.state.condition,
       description: this.state.description,
-      image: this.state.image
+      image: this.state.image,
     };
 
     axios
-      .post("https://afternoon-river-07186.herokuapp.com/posts", post)
-      .then(data => {
+      .post("http://localhost:3001/posts", post)
+      .then((data) => {
         if (data) {
           console.log(data);
 
@@ -72,28 +72,28 @@ class Form extends Component {
           alert("Must be logged in to make a post.");
         }
       })
-      .catch(error => console.log(error.response));
+      .catch((error) => console.log(error.response));
   };
 
   uploadFile = (file, post) => {
     const upload = new DirectUpload(
       file,
-      "https://afternoon-river-07186.herokuapp.com/rails/active_storage/direct_uploads"
+      "http://localhost:3001/rails/active_storage/direct_uploads"
     );
     upload.create((error, blob) => {
       if (error) {
         console.log(error);
       } else {
-        fetch(`https://afternoon-river-07186.herokuapp.com/posts/${post.id}`, {
+        fetch(`http://localhost:3001/posts/${post.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
+            Accept: "application/json",
           },
-          body: JSON.stringify({ image: blob.signed_id })
+          body: JSON.stringify({ image: blob.signed_id }),
         })
-          .then(response => response.json())
-          .then(result => console.log(result));
+          .then((response) => response.json())
+          .then((result) => console.log(result));
       }
     });
   };
